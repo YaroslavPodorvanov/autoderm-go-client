@@ -2,6 +2,7 @@ package autoderm_go_client
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"io"
 	"mime/multipart"
@@ -16,9 +17,9 @@ func NewClient(apiKey string) *Client {
 	return &Client{apiKey: apiKey}
 }
 
-func (c *Client) Query(skinImageName string, skinImageReader io.Reader) ([]byte, error) {
+func (c *Client) Query(skinImageName string, skinImageReader io.Reader) (*QueryResponse, error) {
 	const (
-		apiURL = "https://autoderm.firstderm.com/v1/query?model=autoderm_v2_0&language=en"
+		apiURL = "https://autoderm.ai/v1/query?model=autoderm_v2_2&language=en"
 	)
 
 	var (
@@ -58,5 +59,11 @@ func (c *Client) Query(skinImageName string, skinImageReader io.Reader) ([]byte,
 		return nil, fmt.Errorf("unexpected status code %d", response.StatusCode)
 	}
 
-	return io.ReadAll(response.Body)
+	result := &QueryResponse{}
+	err = json.NewDecoder(response.Body).Decode(result)
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
 }
