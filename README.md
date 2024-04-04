@@ -13,7 +13,7 @@ Unofficial API client for https://autoderm.ai/
 ## Installation
 
 ```sh
-go get github.com/YaroslavPodorvanov/autoderm-go-client
+go get github.com/dochq/autoderm-go-client
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ import (
     "log"
     "os"
 
-    autoderm "github.com/YaroslavPodorvanov/autoderm-go-client"
+    autoderm "github.com/dochq/autoderm-go-client"
 )
 
 func main() {
@@ -36,7 +36,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-	defer file.Close()
+    defer file.Close()
 
     response, err := client.Query("skin.jpeg", file)
     if err != nil {
