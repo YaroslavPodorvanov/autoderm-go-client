@@ -36,6 +36,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
+	defer file.Close()
 
     response, err := client.Query("skin.jpeg", file)
     if err != nil {

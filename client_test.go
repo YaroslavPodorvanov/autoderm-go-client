@@ -30,6 +30,7 @@ func TestClient(t *testing.T) {
 
 	file, err := os.Open("skin.jpeg")
 	require.NoError(t, err)
+	defer file.Close()
 
 	response, err := client.Query("skin.jpeg", file)
 	require.NoError(t, err)
