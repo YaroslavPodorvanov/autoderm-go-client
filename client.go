@@ -7,6 +7,7 @@ import (
 	"io"
 	"mime/multipart"
 	"net/http"
+	"strconv"
 )
 
 type Client struct {
@@ -17,12 +18,12 @@ func NewClient(apiKey string) *Client {
 	return &Client{apiKey: apiKey}
 }
 
-func (c *Client) Query(skinImageName string, skinImageReader io.Reader) (*QueryResponse, error) {
-	const (
-		apiURL = "https://autoderm.ai/v1/query?model=autoderm_v2_2&language=en"
-	)
-
+func (c *Client) Query(skinImageName string, skinImageReader io.Reader, saveImage bool) (*QueryResponse, error) {
 	var (
+		apiURL = "https://autoderm.ai/v1/query" +
+			"?model=autoderm_v2_2" +
+			"&language=en" +
+			"&save_image=" + strconv.FormatBool(saveImage)
 		requestBody = &bytes.Buffer{}
 		writer      = multipart.NewWriter(requestBody)
 	)
