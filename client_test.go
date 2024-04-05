@@ -5,6 +5,7 @@ import (
 	"os"
 	"testing"
 
+	"github.com/google/uuid"
 	"github.com/jarcoal/httpmock"
 	"github.com/stretchr/testify/require"
 )
@@ -37,41 +38,41 @@ func TestClient(t *testing.T) {
 	require.Equal(t, &QueryResponse{
 		Success: true,
 		Message: "completed",
-		ID:      "00000000-0000-0000-0000-000007b030ce",
+		ID:      uuid.MustParse("00000000-0000-0000-0000-000007b030ce"),
 		Predictions: []Prediction{
 			{
 				Confidence:       0.20118004282871116,
 				Icd:              "D18.01",
 				Name:             "Angioma (Cherry angioma)",
-				ClassificationID: "3e51ccc4-d4aa-11e7-a562-0242ac120003",
+				ClassificationID: uuid.MustParse("3e51ccc4-d4aa-11e7-a562-0242ac120003"),
 				ReadMoreURL:      "https://www.firstderm.com/angioma/",
 			},
 			{
 				Confidence:       0.15057508063238972,
 				Icd:              "D22.9",
 				Name:             "Atypical Melanocytic Nevus",
-				ClassificationID: "b698ea32-8f39-4bb5-82e5-082a58f013d7",
+				ClassificationID: uuid.MustParse("b698ea32-8f39-4bb5-82e5-082a58f013d7"),
 				ReadMoreURL:      "https://www.firstderm.com/mole-congenital-nevus/",
 			},
 			{
 				Confidence:       0.07693463345465025,
 				Icd:              "D22.9",
 				Name:             "Nevus (Benign Mole)",
-				ClassificationID: "3e4fd5a6-d4aa-11e7-a562-0242ac120003",
+				ClassificationID: uuid.MustParse("3e4fd5a6-d4aa-11e7-a562-0242ac120003"),
 				ReadMoreURL:      "https://www.firstderm.com/mole-congenital-nevus/",
 			},
 			{
 				Confidence:       0.05560834131992198,
 				Icd:              "D23.9",
 				Name:             "Dermatofibroma",
-				ClassificationID: "3e4fdae1-d4aa-11e7-a562-0242ac120003",
+				ClassificationID: uuid.MustParse("3e4fdae1-d4aa-11e7-a562-0242ac120003"),
 				ReadMoreURL:      "https://www.firstderm.com/dermatofibroma/",
 			},
 			{
 				Confidence:       0.05559970467420187,
 				Icd:              "L81.0",
 				Name:             "Postinflammatory Hyperpigmentation",
-				ClassificationID: "3e51595d-d4aa-11e7-a562-0242ac120003",
+				ClassificationID: uuid.MustParse("3e51595d-d4aa-11e7-a562-0242ac120003"),
 				ReadMoreURL:      "https://www.firstderm.com/hyperpigmentation/",
 			},
 		},
