@@ -19,7 +19,7 @@ func TestClient(t *testing.T) {
 
 	httpmock.RegisterResponder(
 		http.MethodPost,
-		"https://autoderm.ai/v1/query?model=autoderm_v2_2&language=en",
+		"https://autoderm.ai/v1/query?model=autoderm_v2_2&language=en&save_image=false",
 		httpmock.NewStringResponder(
 			200,
 			fixture,
@@ -32,7 +32,7 @@ func TestClient(t *testing.T) {
 	require.NoError(t, err)
 	defer file.Close()
 
-	response, err := client.Query("skin.jpeg", file)
+	response, err := client.Query("skin.jpeg", file, false)
 	require.NoError(t, err)
 	require.Equal(t, &QueryResponse{
 		Success: true,
