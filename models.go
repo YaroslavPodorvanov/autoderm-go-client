@@ -5,7 +5,7 @@ import "github.com/google/uuid"
 type QueryResponse struct {
 	Success     bool         `json:"success"`
 	Message     string       `json:"message"`
-	ID          uuid.UUID    `json:"id"`
+	ID          string       `json:"id"` // uuid.UUID on success or empty string on failure
 	Predictions []Prediction `json:"predictions"`
 }
 
